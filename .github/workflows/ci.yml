@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  saludar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bajar el código
+        uses: actions/checkout@v4
+
+      - name: Ejecutar mi script
+        run: ./scripts/hola.sh Pipeline
+
+      - name: Mostrar info del runner
+        run: |
+          echo "Sistema: $(uname -a)"
+          echo "Usuario: $(whoami)"
+          ls -la
