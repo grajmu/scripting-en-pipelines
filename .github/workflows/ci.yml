@@ -39,6 +39,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: [test, seguridad]
+    environment: produccion
     steps:
       - name: Desplegar
         run: echo "Poniendo en producción 🚀"
