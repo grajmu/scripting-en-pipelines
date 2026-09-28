@@ -13,7 +13,6 @@ jobs:
 
       - name: Compilar
         run: |
-<<<<<<< HEAD
           echo "Empaquetando la app..."
           echo "build del $(date +%F)" > app.txt
           cat app.txt
@@ -43,16 +42,12 @@ jobs:
     steps:
       - name: Desplegar
         run: echo "Poniendo en producción 🚀"
-=======
-          echo "Sistema: $(uname -a)"
-          echo "Usuario: $(whoami)"
-          ls -la
-  
+
   saludar2:
     runs-on: ubuntu-latest
     steps:
       - name: Bajar el código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Ejecutar mi script
         run: ./scripts/hola.sh Pipeline
@@ -62,4 +57,3 @@ jobs:
           echo "Sistema: $(uname -a)"
           echo "Usuario: $(whoami)"
           ls -la
->>>>>>> fbab830e256528afbca54cb9f0a1356e910de6a0
