@@ -5,6 +5,22 @@ on:
     branches: [main]
 
 jobs:
+
+  saludar2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bajar el código
+        uses: actions/checkout@v5
+
+      - name: Ejecutar mi script
+        run: ./scripts/hola.sh Pipeline
+
+      - name: Mostrar info del runner
+        run: |
+          echo "Sistema: $(uname -a)"
+          echo "Usuario: $(whoami)"
+          ls -la
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +35,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build,saludar2
     steps:
       - name: Bajar el código
         uses: actions/checkout@v5
@@ -44,17 +60,4 @@ jobs:
       - name: Desplegar
         run: echo "Poniendo en producción 🚀"
 
-  saludar2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Bajar el código
-        uses: actions/checkout@v5
-
-      - name: Ejecutar mi script
-        run: ./scripts/hola.sh Pipeline
-
-      - name: Mostrar info del runner
-        run: |
-          echo "Sistema: $(uname -a)"
-          echo "Usuario: $(whoami)"
-          ls -la
+  
