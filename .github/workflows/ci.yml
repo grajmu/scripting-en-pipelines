@@ -31,7 +31,7 @@ jobs:
 
   seguridad:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
     steps:
       - name: Escanear
         run: echo "Buscando vulnerabilidades... todo OK ✅"
