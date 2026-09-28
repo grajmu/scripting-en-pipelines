@@ -5,17 +5,40 @@ on:
     branches: [main]
 
 jobs:
-  saludar:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Bajar el código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Ejecutar mi script
-        run: ./scripts/hola.sh Pipeline
-
-      - name: Mostrar info del runner
+      - name: Compilar
         run: |
-          echo "Sistema: $(uname -a)"
-          echo "Usuario: $(whoami)"
-          ls -la
+          echo "Empaquetando la app..."
+          echo "build del $(date +%F)" > app.txt
+          cat app.txt
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Bajar el código
+        uses: actions/checkout@v5
+
+      - name: Correr tests
+        run: |
+          echo "Corriendo tests..."
+          ./scripts/hola.sh Test
+
+  seguridad:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Escanear
+        run: echo "Buscando vulnerabilidades... todo OK ✅"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, seguridad]
+    steps:
+      - name: Desplegar
+        run: echo "Poniendo en producción 🚀"
