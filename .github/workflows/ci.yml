@@ -19,3 +19,18 @@ jobs:
           echo "Sistema: $(uname -a)"
           echo "Usuario: $(whoami)"
           ls -la
+  
+  saludar2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bajar el código
+        uses: actions/checkout@v4
+
+      - name: Ejecutar mi script
+        run: ./scripts/hola.sh Pipeline
+
+      - name: Mostrar info del runner
+        run: |
+          echo "Sistema: $(uname -a)"
+          echo "Usuario: $(whoami)"
+          ls -la
